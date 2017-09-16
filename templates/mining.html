@@ -1,0 +1,60 @@
+<!--by meself -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/static/img/favicon.ico" mce_href="/static/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" mce_href="/static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/libs/jquery-confirm.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+
+    <title>
+        Data Prediction
+    </title>
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div id="vue-div" class="row" style="padding: 20px">
+    <h2 style="text-align: center">Data Prediction</h2>
+    <hr>
+    <div style="padding: 10px;">
+        <div class="input-group">
+            <span class="input-group-addon">The latest temperature:</span>
+            <input type="text" class="form-control" v-model="request.latest_temp_list" placeholder="Separated with ‘,’ if multiple data">
+            <span class="input-group-addon">Method:</span>
+            <select v-model="request.predict_type" class="form-control">
+                <option value="Similarity">Similarity(Pearson)</option>
+                <option value="SimilarityMine">Similarity(Vector)</option>
+                <option value="Linear regression">Linear regression</option>
+            </select>
+        </div>
+        <br>
+        <button style="width: 100%" class="btn btn-info" onclick="click_search()">Predict</button>
+    </div>
+    <hr>
+    <img v-show="loading" style="position:fixed; left:50%; top:50%;" src="/static/img/loading.gif">
+
+    <div style="height: 20px; width: 100%; text-align: center">
+        The predicted temperature for the next five days:<b style="color: chocolate">${response.predict_result}</b>
+    </div>
+    <br>
+    <br>
+    <div style="height:80px;color:red;text-align: center;font-size: medium">A graph that verifies the accuracy of the algorithm:</div>
+    <div id="chart-div" style="height: 300px; width: 100%; text-align: center">
+    </div>
+</div>
+</div>
+</body>
+
+<script src="/static/js/libs/vue.min.js"></script>
+<script src="/static/js/libs/jquery.js"></script>
+<script src="/static/js/libs/jquery-confirm.js"></script>
+<script src="/static/js/libs/jquery-cookie.js"></script>
+<script src="/static/js/libs/echarts-all.js"></script>
+<script src="/static/js/config.js"></script>
+<script src="/static/js/base.js"></script>
+<script src="/static/js/mining.js"></script>
+</html>
